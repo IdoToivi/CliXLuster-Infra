@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clixluster-frontend
+  namespace: clixluster
+  labels:
+    app: clixluster-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clixluster-frontend
+  template:
+    metadata:
+      labels:
+        app: clixluster-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ido1t7/clixluster-frontend:latest
+        ports:
+        - containerPort: 80
