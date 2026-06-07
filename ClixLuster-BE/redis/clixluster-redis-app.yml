@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/IdoToivi/CliXLuster-Infra.git'
     targetRevision: HEAD
-    path: CliXLuster-BE/redis
+    path: ClixLuster-BE/redis
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: clixluster
