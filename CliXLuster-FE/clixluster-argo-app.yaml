@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/ido1t7/CliXLuster-Infra.git' # מאגר התשתיות שלך
+    repoURL: 'https://github.com/IdoToivi/CliXLuster-Infra.git' 
     targetRevision: HEAD
-    path: frontend # התיקייה שבה נמצאים המניפסטים המפוצלים
+    path: CliXLuster-FE
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: clixluster # קוברנטיס ייצור את ה-namespace הזה אוטומטית
+    namespace: clixluster 
   syncPolicy:
     automated:
       prune: true
