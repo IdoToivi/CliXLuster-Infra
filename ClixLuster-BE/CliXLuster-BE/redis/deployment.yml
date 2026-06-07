@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clixluster-redis
+  labels:
+    app: clixluster-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clixluster-redis
+  template:
+    metadata:
+      labels:
+        app: clixluster-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
