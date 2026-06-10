@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ido1t7/clixluster-frontend:v1.0.16
+        image: ido1t7/clixluster-frontend:v1.19
         ports:
         - containerPort: 80
