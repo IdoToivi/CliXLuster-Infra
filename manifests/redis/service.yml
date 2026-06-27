@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: clixluster-redis-svc
+  namespace: clixluster
   labels:
     app: clixluster-redis
 spec:
-  type: ClusterIP # פנימי בלבד! אנחנו לא רוצים ש-Redis יהיה חשוף לאינטרנט או מחוץ לקלאסטר
+  type: ClusterIP # פנימי בלבד! לא חושפים את Redis מחוץ לקלאסטר
   ports:
     - port: 6379
       targetPort: 6379

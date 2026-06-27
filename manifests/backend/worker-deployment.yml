@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clixluster-backend-worker
+  namespace: clixluster
+  labels:
+    app: clixluster-backend-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clixluster-backend-worker
+  template:
+    metadata:
+      labels:
+        app: clixluster-backend-worker
+    spec:
+      containers:
+      - name: worker
+        image: ido1t7/clixluster-backend:v1.1
+        # אותו image כמו ה-API, רק פקודה אחרת. ב-Linux אין צורך ב---pool=solo.
+        command: ["celery", "-A", "app.workers.tasks.celery_app", "worker", "--loglevel=info"]
+        envFrom:
+        - configMapRef:
+            name: clixluster-backend-config
+        livenessProbe:
+          # sh -c כדי ש-$(hostname) יורחב; exec לבדו לא מריץ shell
+          exec:
+            command: ["sh", "-c", "celery -A app.workers.tasks.celery_app inspect ping -d celery@$(hostname)"]
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          timeoutSeconds: 10
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi

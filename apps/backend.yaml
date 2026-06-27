@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: clixluster-frontend-app
+  name: clixluster-backend-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/IdoToivi/CliXLuster-Infra.git'
     targetRevision: main
-    path: CliXLuster-FE
+    path: manifests/backend
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: clixluster

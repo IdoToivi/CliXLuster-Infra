@@ -20,7 +20,6 @@ spec:
         image: ido1t7/clixluster-frontend:v1.25
         ports:
         - containerPort: 80
-<<<<<<< HEAD
         readinessProbe:
           httpGet:
             path: /
@@ -40,5 +39,3 @@ spec:
           limits:
             cpu: 100m
             memory: 64Mi
-=======
->>>>>>> 1b047d6db91e54a199e43b1977052b3d835dd5f5

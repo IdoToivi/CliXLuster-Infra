@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clixluster-backend-api
+  namespace: clixluster
+  labels:
+    app: clixluster-backend-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clixluster-backend-api
+  template:
+    metadata:
+      labels:
+        app: clixluster-backend-api
+    spec:
+      containers:
+      - name: api
+        image: ido1t7/clixluster-backend:v1.1
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: clixluster-backend-config
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi

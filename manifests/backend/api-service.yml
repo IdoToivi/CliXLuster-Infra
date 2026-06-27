@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clixluster-backend-svc
+  namespace: clixluster
+spec:
+  type: NodePort # נגיש מהדפדפן דרך IP של המאסטר (תואם ל-VITE_API_URL)
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 32001
+    protocol: TCP
+  selector:
+    app: clixluster-backend-api

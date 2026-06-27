@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clixluster-backend-config
+  namespace: clixluster
+data:
+  # Redis הפנימי של הקלאסטר (אותו namespace) — לא ה-port-forward המקומי
+  REDIS_URL: redis://clixluster-redis-svc:6379/0
